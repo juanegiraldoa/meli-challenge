@@ -11,7 +11,7 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "postinstall": "flowbite-react patch",
-    "deploy": "tsc -b && vite build && wrangler pages deploy ./dist/"
+    "deploy": "tsc -b && vite build && wrangler pages deploy ./dist/ --project-name=meli-challenge"
   },
   "dependencies": {
     "flowbite-react": "^0.11.7",
