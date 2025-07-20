@@ -1,0 +1,39 @@
+name: Deploy Api
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: coretto
+        java-version: 23
+
+    - name: Execute Gradle build
+      working-directory: api
+      run: |
+        chmod +x gradlew
+        ./gradlew build
+        
+    - name: Login registry
+      run: docker login ghcr.io -u ${{ secrets.IMAGE_USERNAME }} -p ${{ secrets.IMAGE_PASSWORD }}
+    
+    - name: Build the image and punblish
+      working-directory: api
+      run: |
+        docker build . --file Dockerfile --tag ghcr.io/juanegiraldoa/meli:$GITHUB_SHA
+        docker tag ghcr.io/juanegiraldoa/meli:$GITHUB_SHA ghcr.io/juanegiraldoa/meli:latest
+        docker push ghcr.io/juanegiraldoa/meli:$GITHUB_SHA
+        docker push ghcr.io/juanegiraldoa/meli:latest
