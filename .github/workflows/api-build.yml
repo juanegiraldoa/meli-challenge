@@ -18,7 +18,7 @@ jobs:
     - name: Setup Java
       uses: actions/setup-java@v4
       with:
-        distribution: amazoncorretto
+        distribution: corretto
         java-version: 23
 
     - name: Execute Gradle build
