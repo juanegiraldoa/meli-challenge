@@ -28,9 +28,9 @@
 1. Abir el pryecto en el IDE de preferencia (Recomentado IntelliJ)
 2. Configurar variables de entorno
     ```
-       DB_URL=jdbc:postgresql://{URL}:5432/{DATABASE}
-       DB_USER={USERNAME}
-       DB_PASS={PASSWORD}
+    DB_URL=jdbc:postgresql://{URL}:5432/{DATABASE}
+    DB_USER={USERNAME}
+    DB_PASS={PASSWORD}
     ```
     o modificar el archivo `application.yml` con la informacion de la coneccion
     ```yml
