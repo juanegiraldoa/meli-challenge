@@ -12,7 +12,12 @@
     ```
 2. Una vez finaliza la creacion de la imagen ejecutar el comando
     ```bash
-   docker run -d -p 8080:8080 --name meli-challenge meli-challenge:latest
+   docker run -d -p 8080:8080 \
+   --name meli-challenge \
+   -e DB_URL={URL} \
+   -e DB_USER={USERNAME} \
+   -e DB_PASS={PASSWORD} \
+   meli-challenge:latest
    ```
 ---
 
@@ -40,3 +45,52 @@
         password: {PASSWORD}
     ```
 3. Ejecutar la funcion `main` dentro de la clase `Application`
+
+---
+
+# Endpoints expuestos
+
+Base URL: `http://127.0.0.1:8080/`
+
+---
+
+### 1. Crear un nuevo seller
+**`POST /seller`**  
+Crea nuevo seller.
+
+**Request body example:**
+```json
+{
+  "title": "Title One",
+  "site": "http://localhost:8080",
+  "nickname": "Juan",
+  "price": 100,
+  "currency": "COP"
+}
+```
+
+---
+
+### 2. Actualizar seller
+**`PUT /seller`**  
+Actualiza seller.
+
+**Request body example:**
+```json
+{
+  "id": "f852cea7-920d-4e5f-a0d2-7443cb66e534",
+  "title": "Title One",
+  "site": "http://localhost:8080",
+  "nickname": "Juan",
+  "price": 100,
+  "currency": "COP"
+}
+```
+
+---
+
+### 3. Consultar sellers
+**`GET /seller`**  
+Consulta todos los sellers.
+
+---
