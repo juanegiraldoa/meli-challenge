@@ -60,11 +60,11 @@ export function SellerForm({
         onChange={handleChange}
       />
       <Button type="submit" disabled={isLoading}>
-        Guardar
+        Save
       </Button>
       {isEditMode && (
         <Button onClick={cancelEdit} disabled={isLoading}>
-          Cancelar
+          Cancel
         </Button>
       )}
     </Form>
