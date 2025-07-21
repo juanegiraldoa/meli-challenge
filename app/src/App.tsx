@@ -1,5 +1,4 @@
 import { Button } from "flowbite-react";
-import { InputField } from "./components/InputField";
 import {
   useCallback,
   useEffect,
@@ -9,9 +8,8 @@ import {
 } from "react";
 import { doFectch } from "./lib/network/Api";
 import { Table } from "./components/Table";
-import { Form } from "./components/Form";
-import { SelectField } from "./components/SelectField";
 import { Modal } from "./components/Modal";
+import { SellerForm } from "./components/SellerForm";
 
 export default function App() {
   const [seller, setSeller] = useState<Record<string, any>>({});
@@ -105,61 +103,15 @@ export default function App() {
         <p>{modal.message}</p>
       </Modal>
       <div className="top-0 flex h-[100vh] w-full gap-4 p-8">
-        <Form
-          className="flex w-6/12 flex-col gap-2"
-          onSubmit={isEditMode ? updateSeller : saveSeller}
-        >
-          <InputField
-            label="Title"
-            name="title"
-            onChange={handleChange}
-            value={seller.title}
-            required
-          />
-          <InputField
-            label="Site"
-            name="site"
-            required
-            onChange={handleChange}
-            value={seller.site}
-          />
-          <InputField
-            label="Nickname"
-            name="nickname"
-            required
-            value={seller.nickname}
-            onChange={handleChange}
-          />
-          <InputField
-            label="Price"
-            name="price"
-            required
-            type="number"
-            value={seller.price}
-            onChange={handleChange}
-          />
-          <SelectField
-            label="Currency"
-            name="currency"
-            id="currency"
-            required
-            value={seller.currency}
-            options={[
-              { label: "COP", value: "COP" },
-              { label: "USD", value: "USD" },
-              { label: "EUR", value: "EUR" },
-            ]}
-            onChange={handleChange}
-          />
-          <Button type="submit" disabled={isLoading}>
-            Guardar
-          </Button>
-          {isEditMode && (
-            <Button onClick={cancelEdit} disabled={isLoading}>
-              Cancelar
-            </Button>
-          )}
-        </Form>
+        <SellerForm
+          isEditMode={isEditMode}
+          updateSeller={updateSeller}
+          saveSeller={saveSeller}
+          seller={seller}
+          handleChange={handleChange}
+          isLoading={isLoading}
+          cancelEdit={cancelEdit}
+        />
         <div className="w-6/12">
           <Table
             headers={[
