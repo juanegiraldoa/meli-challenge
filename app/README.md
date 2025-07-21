@@ -16,3 +16,4 @@ Desde el directorio raiz del proyecto `app` ejecutar los comandos:
     ```bash
     npm run dev
     ```
+3.  Para modificar el endpoint del api cambiar la URL que se encuentra en el archivo `src/lib/network/Api/index.ts`
